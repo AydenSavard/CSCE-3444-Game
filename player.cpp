@@ -28,6 +28,7 @@ void Player::setPassword(string p){
 
 void Player::addScore(int s){
 	scores.push_back(s);
+	updateHighScore();
 }
 
 void Player::updateHighScore(){
