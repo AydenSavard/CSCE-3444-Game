@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <string>
+#include <vector>
 using namespace std;
 
 class Player{
@@ -10,16 +11,18 @@ class Player{
 		Player(string u, string p, int s);
 		void setUsername(string n);
 		void setPassword(string p);
-		void setScore(int s);
+		void addScore(int s);
+		void updateHighScore()
 		string getUsername();
 		string getPassword();
-		int getScore();
+		int getHighScore();
 		void printPlayer();
 		
 	private:
 		string username;
 		string password;
-		int score;
+		vector<int> scores;
+		int highScore;
 };
 
 #endif
