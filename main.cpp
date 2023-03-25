@@ -1,12 +1,15 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include "boardSetup.h"
+#include "boardSize.h"
 using namespace std;
 
 int main(){
 
-    string bSize = "5x6";//format for the size of the board
-    boardSetup(bSize);
+    vector<vector<int>> board;
+	string bSize = boardSize();//format for the size of the board
+    boardSetup(bSize, board);
 
     return 1;
 }
