@@ -1,5 +1,7 @@
 #include <string>
+#include <vector>
+using namespace std;
 #ifndef bSet
 #define bSet
-void boardSetup(std::string bSize);
+void boardSetup(string bSize, vector<vector<int>> &board);
 #endif
