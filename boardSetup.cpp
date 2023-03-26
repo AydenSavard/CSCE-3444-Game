@@ -31,7 +31,7 @@ string boardSize() {
 				valid = true;
 				break;
 			case 3:
-				size = "9x9";
+				size = "14x14";
 				valid = true;
 				break;
 			default:
@@ -45,8 +45,16 @@ string boardSize() {
 void boardSetup(string bSize, vector<vector<int>> &board){//creates a board of the given size filled with '1s and 2s's
     srand(time(nullptr));
 	
-	int rows = bSize.at(0)-48;
-    int coll = bSize.at(2)-48;
+	int rows;
+	int coll;
+	if (bSize.length() == 3) {
+		rows = bSize.at(0)-48;
+		coll = bSize.at(2)-48;
+	}
+	else {
+		rows = stoi(bSize.substr(0, 2));
+		coll = stoi(bSize.substr(3, 2));
+	}
     cout << rows << "x" << coll << endl;//outputs board size
     
     for(int i=0; i<rows;i++){//creating the board of 1s and 2s
