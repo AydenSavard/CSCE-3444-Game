@@ -8,6 +8,7 @@ using namespace std;
 class Player{
 	public:
 		Player();
+		Player(string u, string p);
 		Player(string u, string p, int s);
 		void setUsername(string n);
 		void setPassword(string p);
