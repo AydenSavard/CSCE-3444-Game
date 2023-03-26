@@ -6,40 +6,33 @@
 using namespace std;
 
 string boardSize() {
-	string size;
 	int selection;
-	bool valid = false;
 	
-	while (!valid) {
+	while (true) {
 		cout << "Board Size:\nSmall(1)\tMedium(2)\tLarge(3)\nSelection: ";
 		while(!(cin >> selection))
-	{
-		cin.clear();
-		cin.ignore(1000, '\n');
-		cout << "\nInvalid selection\n" << endl;
-		cout << "Board Size:\nSmall(1)\tMedium(2)\tLarge(3)\nSelection: ";
-	}
+		{
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << "\nInvalid selection\n" << endl;
+			cout << "Board Size:\nSmall(1)\tMedium(2)\tLarge(3)\nSelection: ";
+		}
 	
 		switch(selection)
 		{
 			case 1:
-				size = "5x5";
-				valid = true;
+				return "5x5";
 				break;
 			case 2:
-				size = "7x7";
-				valid = true;
+				return "7x7";
 				break;
 			case 3:
-				size = "9x9";
-				valid = true;
+				return "9x9";
 				break;
 			default:
 				cout << "\nInvalid selection\n" << endl;
 		}
 	}
-	
-	return size;
 }
 
 void boardSetup(string bSize, vector<vector<int>> &board){//creates a board of the given size filled with '1s and 2s's
@@ -63,7 +56,7 @@ void boardSetup(string bSize, vector<vector<int>> &board){//creates a board of t
         vector<int> empt;
         for(int j=0; j<coll;j++){
             random = rand() % 2 + 1;
-	    empt.push_back(random);
+			empt.push_back(random);
         }
         board.push_back(empt);
     }
