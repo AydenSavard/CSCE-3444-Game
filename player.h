@@ -12,7 +12,6 @@ class Player{
 		void setUsername(string n);
 		void setPassword(string p);
 		void addScore(int s);
-		void updateHighScore();
 		string getUsername();
 		string getPassword();
 		int getHighScore();
