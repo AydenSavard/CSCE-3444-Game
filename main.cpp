@@ -3,6 +3,8 @@
 #include <vector>
 #include "boardSetup.h"
 #include "boardSize.h"
+#include "player.h"
+#include "players.h"
 using namespace std;
 
 int main(){

@@ -80,7 +80,7 @@ void Players::editPlayer(string user){
 					cout << "Enter the new player's score: ";
 					cin >> s;
 					cin.ignore();
-					playerlist.at(i)->setScore(s);
+					playerlist.at(i)->addScore(s);
 				}
 				cout << "Do you want to keep editing?(y/n) "; 
 				cin >> choice; cin.ignore();
@@ -140,7 +140,7 @@ void Players::storePlayer(){
    for (auto it = playerlist.begin(); it !=playerlist.end(); ++it)
     {
         temp= *it;
-        fout << temp->getUsername() << " " << temp->getPassword() << " " << temp->getScore() << endl;
+        fout << temp->getUsername() << " " << temp->getPassword() << " " << temp->getHighScore() << endl;
     }
     fout.close();
 }
