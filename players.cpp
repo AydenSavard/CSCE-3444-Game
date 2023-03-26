@@ -27,6 +27,7 @@ void Players::addPlayer(){
 	int s;
 	Player *add;
 	
+	cin.ignore();
 	cout << "Enter the player's name: ";
 	getline(cin, u);
 	cout << "Enter the player's password: ";
