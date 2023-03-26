@@ -28,10 +28,6 @@ void Player::setPassword(string p){
 
 void Player::addScore(int s){
 	scores.push_back(s);
-	updateHighScore();
-}
-
-void Player::updateHighScore(){
 	for(int i = 0; i < scores.size(); i++){
 		if (scores[i] > highScore){
 			highScore = scores[i];
