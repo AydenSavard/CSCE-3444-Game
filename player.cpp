@@ -11,6 +11,13 @@ Player::Player(){
 	scores.push_back(0);
 }
 
+Player::Player(string u, string p){
+	username = u;
+	password = p;
+	scores.push_back(0);
+	highScore = 0;
+}
+
 Player::Player(string u, string p, int s){
 	username = u;
 	password = p;
