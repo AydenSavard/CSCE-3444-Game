@@ -12,7 +12,13 @@ string boardSize() {
 	
 	while (!valid) {
 		cout << "Board Size:\nSmall(1)\tMedium(2)\tLarge(3)\nSelection: ";
-		cin >> selection;
+		while(!(cin >> selection))
+	{
+		cin.clear();
+		cin.ignore(1000, '\n');
+		cout << "\nInvalid selection\n" << endl;
+		cout << "Board Size:\nSmall(1)\tMedium(2)\tLarge(3)\nSelection: ";
+	}
 	
 		switch(selection)
 		{
@@ -29,7 +35,7 @@ string boardSize() {
 				valid = true;
 				break;
 			default:
-				cout << "Invalid selection\n";
+				cout << "\nInvalid selection\n" << endl;
 		}
 	}
 	
