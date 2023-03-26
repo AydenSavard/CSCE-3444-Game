@@ -31,7 +31,7 @@ string boardSize() {
 				valid = true;
 				break;
 			case 3:
-				size = "14x14";
+				size = "9x9";
 				valid = true;
 				break;
 			default:
