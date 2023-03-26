@@ -5,7 +5,7 @@
 #include "boardSetup.h"
 using namespace std;
 
-void boardSetup(string bSize, vector<vector<int>> &board){//creates a board of the given size filled with 'e's
+void boardSetup(string bSize, vector<vector<int>> &board){//creates a board of the given size filled with '1s and 2s's
     srand(time(nullptr));
 	
 	int rows = bSize.at(0)-48;
