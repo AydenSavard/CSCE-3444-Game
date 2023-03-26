@@ -47,6 +47,8 @@ void boardSetup(string bSize, vector<vector<int>> &board){//creates a board of t
 	
 	int rows;
 	int coll;
+	int random;
+	int random2;
 	if (bSize.length() == 3) {
 		rows = bSize.at(0)-48;
 		coll = bSize.at(2)-48;
@@ -60,12 +62,18 @@ void boardSetup(string bSize, vector<vector<int>> &board){//creates a board of t
     for(int i=0; i<rows;i++){//creating the board of 1s and 2s
         vector<int> empt;
         for(int j=0; j<coll;j++){
-            empt.push_back(rand() % 2 + 1);
+            random = rand() % 2 + 1;
+	    empt.push_back(random);
         }
         board.push_back(empt);
     }
-	board[rand() % rows][rand() % coll] = 3;	//adding the "player"
-	board[rand() % rows][rand() % coll] = 4;	//adding the "exit"
+	random = rand() % rows;
+	random2 = rand() % coll;
+	board[random][random2] = 3;	//adding the "player"
+	
+	random = rand() % rows;
+	random2 = rand() % coll;
+	board[random][random2] = 4;	//adding the "exit"
 
     for(int i=0; i<board.size();i++){//outputs the board, can be removed if not needed
         for(int j=0; j<board[i].size();j++){
