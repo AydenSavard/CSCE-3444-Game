@@ -159,11 +159,23 @@
 	<button id="Right">Right</button>
 	<button id="Up">Up</button>
 	<button id="Down">Down</button>
+	<script src="boardSetup.js"></script>
 	<script>
-	    var row = 0;
-		var col = 0; 
+		var grid = [];
+		var row = 0;
+		var col = 0;
+		boardSetup("10x10", grid);
+		for (let i = 0; i<10; i++) {
+			for (let j = 0; j<10; j++) {
+				if (grid[i][j] == 3) {
+					row = i;
+					col = j;
+				}
+			}
+		}
 		var myDiv = document.getElementById(row + ":" + col);
 		myDiv.className = "playcell";
+		myDiv.textContent = 'X';
 		
 		var left = document.getElementById("Left");
 		left.addEventListener("click", function() {
@@ -174,6 +186,7 @@
 			myDiv.className = "cell";
 			myDiv = document.getElementById(row + ":" + col);
 			myDiv.className = "playcell";
+			myDiv.textContent = 'X';
 		});
 		
 		var right = document.getElementById("Right");
@@ -181,10 +194,11 @@
 			if (col != 9) {
 				col++;
 			}
-			
+
 			myDiv.className = "cell";
 			myDiv = document.getElementById(row + ":" + col);
 			myDiv.className = "playcell";
+			myDiv.textContent = 'X';
 		});
 		
 		var up = document.getElementById("Up");
@@ -196,6 +210,7 @@
 			myDiv.className = "cell";
 			myDiv = document.getElementById(row + ":" + col);
 			myDiv.className = "playcell";
+			myDiv.textContent = 'X';
 		});
 		
 		var down = document.getElementById("Down");
@@ -207,6 +222,7 @@
 			myDiv.className = "cell";
 			myDiv = document.getElementById(row + ":" + col);
 			myDiv.className = "playcell";
+			myDiv.textContent = 'X';
 		});
 	</script>
 </body>
