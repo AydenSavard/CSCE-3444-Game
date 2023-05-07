@@ -182,6 +182,10 @@
 			if (col != 0) {
 				col--;
 			}
+			if (col == 0) {
+                		document.querySelector('#Left').setAttribute('disabled', true);
+            		}
+            		document.querySelector('#Right').removeAttribute('disabled');
 			
 			myDiv.className = "cell";
 			myDiv = document.getElementById(row + ":" + col);
@@ -194,6 +198,10 @@
 			if (col != 9) {
 				col++;
 			}
+			if (col == 9) {
+                		document.querySelector('#Right').setAttribute('disabled', true);
+            		}
+            		document.querySelector('#Left').removeAttribute('disabled');
 
 			myDiv.className = "cell";
 			myDiv = document.getElementById(row + ":" + col);
@@ -206,6 +214,10 @@
 			if (row != 0) {
 				row--;
 			}
+			if (row == 0) {
+                		document.querySelector('#Up').setAttribute('disabled', true);
+            		}
+            		document.querySelector('#Down').removeAttribute('disabled');
 			
 			myDiv.className = "cell";
 			myDiv = document.getElementById(row + ":" + col);
@@ -218,6 +230,10 @@
 			if (row != 9) {
 				row++;
 			}
+			if (row == 9) {
+                		document.querySelector('#Down').setAttribute('disabled', true);
+            		}
+            		document.querySelector('#Up').removeAttribute('disabled');
 			
 			myDiv.className = "cell";
 			myDiv = document.getElementById(row + ":" + col);
