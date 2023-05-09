@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>2D Board</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		/* Add some basic styles */
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f1f1f1;
+		}
+
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+		}
+		
+		.button {
+			display: inline-block;
+			padding: 5px;
+			background-color: #4CAF50;
+			color: #fff;
+			font-size: 12px;
+			text-align: left;
+			float: right;
+			text-decoration: none;
+			border-radius: 5px;
+			cursor: pointer;
+			margin: 5px;
+		}
+
+		.board {
+			margin: 50px auto;
+			width: 500px;
+			height: 500px;
+			background-color: #ddd;
+			border: 1px solid #888;
+			display: grid;
+			grid-template-columns: repeat(8, 1fr);
+			grid-template-rows: repeat(8, 1fr);
+		}
+
+		.cell {
+			background-color: #fff;
+			border: 1px solid #ccc;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 2rem;
+		}
+		
+		.playcell {
+			background-color: #7f7;
+			border: 1px solid #ccc;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 2rem;
+		}
+
+		.cell:hover {
+			background-color: #eee;
+		}
+
+	</style>
+</head>
+<body>
+	<h1>Grid Dungeon</h1>
+	<div id="board" class="board">
+		<div id="0:0" class="cell"></div>
+		<div id="0:1" class="cell"></div>
+		<div id="0:2" class="cell"></div>
+		<div id="0:3" class="cell"></div>
+		<div id="0:4" class="cell"></div>
+		<div id="0:5" class="cell"></div>
+		<div id="0:6" class="cell"></div>
+		<div id="0:7" class="cell"></div>
+		<div id="1:0" class="cell"></div>
+		<div id="1:1" class="cell"></div>
+		<div id="1:2" class="cell"></div>
+		<div id="1:3" class="cell"></div>
+		<div id="1:4" class="cell"></div>
+		<div id="1:5" class="cell"></div>
+		<div id="1:6" class="cell"></div>
+		<div id="1:7" class="cell"></div>
+		<div id="2:0" class="cell"></div>
+		<div id="2:1" class="cell"></div>
+		<div id="2:2" class="cell"></div>
+		<div id="2:3" class="cell"></div>
+		<div id="2:4" class="cell"></div>
+		<div id="2:5" class="cell"></div>
+		<div id="2:6" class="cell"></div>
+		<div id="2:7" class="cell"></div>
+		<div id="3:0" class="cell"></div>
+		<div id="3:1" class="cell"></div>
+		<div id="3:2" class="cell"></div>
+		<div id="3:3" class="cell"></div>
+		<div id="3:4" class="cell"></div>
+		<div id="3:5" class="cell"></div>
+		<div id="3:6" class="cell"></div>
+		<div id="3:7" class="cell"></div>
+		<div id="4:0" class="cell"></div>
+		<div id="4:1" class="cell"></div>
+		<div id="4:2" class="cell"></div>
+		<div id="4:3" class="cell"></div>
+		<div id="4:4" class="cell"></div>
+		<div id="4:5" class="cell"></div>
+		<div id="4:6" class="cell"></div>
+		<div id="4:7" class="cell"></div>
+		<div id="5:0" class="cell"></div>
+		<div id="5:1" class="cell"></div>
+		<div id="5:2" class="cell"></div>
+		<div id="5:3" class="cell"></div>
+		<div id="5:4" class="cell"></div>
+		<div id="5:5" class="cell"></div>
+		<div id="5:6" class="cell"></div>
+		<div id="5:7" class="cell"></div>
+		<div id="6:0" class="cell"></div>
+		<div id="6:1" class="cell"></div>
+		<div id="6:2" class="cell"></div>
+		<div id="6:3" class="cell"></div>
+		<div id="6:4" class="cell"></div>
+		<div id="6:5" class="cell"></div>
+		<div id="6:6" class="cell"></div>
+		<div id="6:7" class="cell"></div>
+		<div id="7:0" class="cell"></div>
+		<div id="7:1" class="cell"></div>
+		<div id="7:2" class="cell"></div>
+		<div id="7:3" class="cell"></div>
+		<div id="7:4" class="cell"></div>
+		<div id="7:5" class="cell"></div>
+		<div id="7:6" class="cell"></div>
+		<div id="7:7" class="cell"></div>
+		<!-- Add more cells as needed -->
+	</div>
+	<button id="Left" style="position: absolute;left:600px;bottom:60px;width:80px;height:40px;">Left</button>
+	<button id="Right" style="position: absolute;left:685px;bottom:60px;width:80px;height:40px;">Right</button>
+	<button id="Up" style="position: absolute;left:770px;bottom:60px;width:80px;height:40px;">Up</button>
+	<button id="Down" style="position: absolute;left:855px;bottom:60px;width:80px;height:40px;">Down</button>
+	<button id="Attack" style="position: absolute;left:375px;bottom:350px;width:80px;height:40px; display: none;">Attack</button>
+	<a href="#" id="menu" class="button" onclick="window.location.href = 'index.html';" style="position: absolute;left:1400px;">Back to Menu</a>
+	<button id="6X6" onclick="window.location.href = 'smallBoard.htm';" style="position: absolute;left:630px;bottom:615px;width:80px;height:40px;">6X6</button>
+	<button id="8X8" onclick="window.location.href = 'mediumBoard.htm';" style="position: absolute;left:730px;bottom:615px;width:80px;height:40px;" disabled>8X8</button>
+	<button id="10X10" onclick="window.location.href = 'largeBoard.htm';" style="position: absolute;left:830px;bottom:615px;width:80px;height:40px;">10X10</button>
+	<p id="monstercount" style="position: absolute;left:1300px;bottom:430px;">Monsters Defeated: 0</p>
+	<p id="treasurecount" style="position: absolute;left:1300px;bottom:400px;">Treasure Collected: 0</p>
+	<p id="winscreen" style="font-size: 70px; position: absolute;left:630px;bottom:325px; display: none;">You Win!</p>
+	<script src="boardSetup.js"></script>
+	<script>
+		document.getElementById("winscreen").style.display = 'none';
+		
+		var grid = [];
+		var row = 0;
+		var col = 0;
+		var treasure = 0;
+		var monster = 0;
+		boardSetup("8x8", grid);
+		for (let i = 0; i<8; i++) {
+			for (let j = 0; j<8; j++) {
+				if (grid[i][j] == 3) {
+					row = i;
+					col = j;
+				}
+			}
+		}
+		var myDiv = document.getElementById(row + ":" + col);
+		myDiv.className = "playcell";
+		myDiv.textContent = 'X';
+		
+		var attack = document.getElementById("Attack");
+		var monsterCount = document.getElementById("monstercount");
+		var treasureCount = document.getElementById("treasurecount");
+		attack.addEventListener("click", function() {
+			document.querySelector('#Up').removeAttribute('disabled');
+			document.querySelector('#Down').removeAttribute('disabled');
+			document.querySelector('#Left').removeAttribute('disabled');
+			document.querySelector('#Right').removeAttribute('disabled');
+			attack.style.display = 'none';
+			monster++;
+			monsterCount.innerHTML = "Monsters Defeated: " + monster;
+		});
+		
+		var left = document.getElementById("Left");
+		left.addEventListener("click", function() {
+			if (col != 0) {
+				col--;
+			}
+			if (col == 0) {
+				document.querySelector('#Left').setAttribute('disabled', true);
+			}
+			document.querySelector('#Right').removeAttribute('disabled');
+			
+			myDiv.className = "cell";
+			myDiv = document.getElementById(row + ":" + col);
+			myDiv.className = "playcell";
+			myDiv.textContent = 'X';
+			if (grid[row][col] == 1)
+			{
+				grid[row][col] = 5;
+				document.querySelector('#Up').setAttribute('disabled', true);
+				document.querySelector('#Down').setAttribute('disabled', true);
+				document.querySelector('#Left').setAttribute('disabled', true);
+				document.querySelector('#Right').setAttribute('disabled', true);
+				attack.style.display = 'block';
+			}
+			else if (grid[row][col] == 2)
+			{
+				treasure++;
+				grid[row][col] = 5;
+				treasureCount.innerHTML = "Treasure Collected: " + treasure;
+			}
+			else if (grid[row][col] == 4)
+			{
+				up.style.display = 'none';
+				down.style.display = 'none';
+				left.style.display = 'none';
+				right.style.display = 'none';
+				attack.style.display = 'none';
+				myDiv = document.getElementById("board");
+				myDiv.style.display = 'none';
+				document.getElementById("winscreen").style.display = 'block';
+				treasureCount.style.left = "690px";
+				treasureCount.style.bottom = "320px";
+				monsterCount.style.left = "690px";
+				monsterCount.style.bottom = "350px";
+				document.getElementById("menu").style.left = "720px";
+				document.getElementById("menu").style.bottom = "290px";
+			}
+		});
+		
+		var right = document.getElementById("Right");
+		right.addEventListener("click", function() {
+			if (col != 7) {
+				col++;
+			}
+			if (col == 7) {
+				document.querySelector('#Right').setAttribute('disabled', true);
+			}
+			document.querySelector('#Left').removeAttribute('disabled');
+			
+			myDiv.className = "cell";
+			myDiv = document.getElementById(row + ":" + col);
+			myDiv.className = "playcell";
+			myDiv.textContent = 'X';
+			if (grid[row][col] == 1)
+			{
+				grid[row][col] = 5;
+				document.querySelector('#Up').setAttribute('disabled', true);
+				document.querySelector('#Down').setAttribute('disabled', true);
+				document.querySelector('#Left').setAttribute('disabled', true);
+				document.querySelector('#Right').setAttribute('disabled', true);
+				attack.style.display = 'block';
+			}
+			else if (grid[row][col] == 2)
+			{
+				treasure++;
+				grid[row][col] = 5;
+				treasureCount.innerHTML = "Treasure Collected: " + treasure;
+			}
+			else if (grid[row][col] == 4)
+			{
+				up.style.display = 'none';
+				down.style.display = 'none';
+				left.style.display = 'none';
+				right.style.display = 'none';
+				attack.style.display = 'none';
+				myDiv = document.getElementById("board");
+				myDiv.style.display = 'none';
+				document.getElementById("winscreen").style.display = 'block';
+				treasureCount.style.left = "690px";
+				treasureCount.style.bottom = "320px";
+				monsterCount.style.left = "690px";
+				monsterCount.style.bottom = "350px";
+				document.getElementById("menu").style.left = "720px";
+				document.getElementById("menu").style.bottom = "290px";
+			}
+		});
+		
+		var up = document.getElementById("Up");
+		up.addEventListener("click", function() {
+			if (row != 0) {
+				row--;
+			}
+			if (row == 0) {
+				document.querySelector('#Up').setAttribute('disabled', true);
+			}
+			document.querySelector('#Down').removeAttribute('disabled');
+			
+			myDiv.className = "cell";
+			myDiv = document.getElementById(row + ":" + col);
+			myDiv.className = "playcell";
+			myDiv.textContent = 'X';
+			if (grid[row][col] == 1)
+			{
+				grid[row][col] = 5;
+				document.querySelector('#Up').setAttribute('disabled', true);
+				document.querySelector('#Down').setAttribute('disabled', true);
+				document.querySelector('#Left').setAttribute('disabled', true);
+				document.querySelector('#Right').setAttribute('disabled', true);
+				attack.style.display = 'block';
+			}
+			else if (grid[row][col] == 2)
+			{
+				treasure++;
+				grid[row][col] = 5;
+				treasureCount.innerHTML = "Treasure Collected: " + treasure;
+			}
+			else if (grid[row][col] == 4)
+			{
+				up.style.display = 'none';
+				down.style.display = 'none';
+				left.style.display = 'none';
+				right.style.display = 'none';
+				attack.style.display = 'none';
+				myDiv = document.getElementById("board");
+				myDiv.style.display = 'none';
+				document.getElementById("winscreen").style.display = 'block';
+				treasureCount.style.left = "690px";
+				treasureCount.style.bottom = "320px";
+				monsterCount.style.left = "690px";
+				monsterCount.style.bottom = "350px";
+				document.getElementById("menu").style.left = "720px";
+				document.getElementById("menu").style.bottom = "290px";
+			}
+		});
+		
+		var down = document.getElementById("Down");
+		down.addEventListener("click", function() {
+			if (row != 7) {
+				row++;
+			}
+			if (row == 7) {
+				document.querySelector('#Down').setAttribute('disabled', true);
+			}
+			document.querySelector('#Up').removeAttribute('disabled');
+			
+			myDiv.className = "cell";
+			myDiv = document.getElementById(row + ":" + col);
+			myDiv.className = "playcell";
+			myDiv.textContent = 'X';
+			if (grid[row][col] == 1)
+			{
+				grid[row][col] = 5;
+				document.querySelector('#Up').setAttribute('disabled', true);
+				document.querySelector('#Down').setAttribute('disabled', true);
+				document.querySelector('#Left').setAttribute('disabled', true);
+				document.querySelector('#Right').setAttribute('disabled', true);
+				attack.style.display = 'block';
+			}
+			else if (grid[row][col] == 2)
+			{
+				treasure++;
+				grid[row][col] = 5;
+				treasureCount.innerHTML = "Treasure Collected: " + treasure;
+			}
+			else if (grid[row][col] == 4)
+			{
+				up.style.display = 'none';
+				down.style.display = 'none';
+				left.style.display = 'none';
+				right.style.display = 'none';
+				attack.style.display = 'none';
+				myDiv = document.getElementById("board");
+				myDiv.style.display = 'none';
+				document.getElementById("winscreen").style.display = 'block';
+				treasureCount.style.left = "690px";
+				treasureCount.style.bottom = "320px";
+				monsterCount.style.left = "690px";
+				monsterCount.style.bottom = "350px";
+				document.getElementById("menu").style.left = "720px";
+				document.getElementById("menu").style.bottom = "290px";
+			}
+		});
+	</script>
+</body>
+</html>
