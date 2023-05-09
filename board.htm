@@ -62,10 +62,11 @@
 		.cell:hover {
 			background-color: #eee;
 		}
+
 	</style>
 </head>
 <body>
-	<h1>2D Board</h1>
+	<h1>Grid Dungeon</h1>
 	<div class="board">
 		<div id="0:0" class="cell"></div>
 		<div id="0:1" class="cell"></div>
@@ -169,16 +170,21 @@
 		<div id="9:9" class="cell"></div>
 		<!-- Add more cells as needed -->
 	</div>
-	<button id="Left">Left</button>
-	<button id="Right">Right</button>
-	<button id="Up">Up</button>
-	<button id="Down">Down</button>
+	<button id="Left" style="position: absolute;left:600px;bottom:60px;width:80px;height:40px;">Left</button>
+	<button id="Right" style="position: absolute;left:685px;bottom:60px;width:80px;height:40px;">Right</button>
+	<button id="Up" style="position: absolute;left:770px;bottom:60px;width:80px;height:40px;">Up</button>
+	<button id="Down" style="position: absolute;left:855px;bottom:60px;width:80px;height:40px;">Down</button>
+	<button id="Attack" style="position: absolute;left:375px;bottom:350px;width:80px;height:40px;">Attack</button>
 	<a href="#" class="button" onclick="window.location.href = 'index.html';">Back to Menu</a>
+	<p id="monstercount" style="position: absolute;left:1300px;bottom:430px;">Monsters Defeated: 0</p>
+	<p id="treasurecount" style="position: absolute;left:1300px;bottom:400px;">Treasure Collected: 0</p>
 	<script src="boardSetup.js"></script>
 	<script>
 		var grid = [];
 		var row = 0;
 		var col = 0;
+		var treasure = 0;
+		var monster = 0;
 		boardSetup("10x10", grid);
 		for (let i = 0; i<10; i++) {
 			for (let j = 0; j<10; j++) {
@@ -191,6 +197,20 @@
 		var myDiv = document.getElementById(row + ":" + col);
 		myDiv.className = "playcell";
 		myDiv.textContent = 'X';
+		
+		var attack = document.getElementById("Attack");
+		var monsterCount = document.getElementById("monstercount");
+		var treasureCount = document.getElementById("treasurecount");
+		attack.style.display = 'none';
+		attack.addEventListener("click", function() {
+			document.querySelector('#Up').removeAttribute('disabled');
+			document.querySelector('#Down').removeAttribute('disabled');
+			document.querySelector('#Left').removeAttribute('disabled');
+			document.querySelector('#Right').removeAttribute('disabled');
+			attack.style.display = 'none';
+			monster++;
+			monsterCount.innerHTML = "Monsters Defeated: " + monster;
+		});
 		
 		var left = document.getElementById("Left");
 		left.addEventListener("click", function() {
@@ -206,6 +226,21 @@
 			myDiv = document.getElementById(row + ":" + col);
 			myDiv.className = "playcell";
 			myDiv.textContent = 'X';
+			if (grid[row][col] == 1)
+			{
+				grid[row][col] = 5;
+				document.querySelector('#Up').setAttribute('disabled', true);
+				document.querySelector('#Down').setAttribute('disabled', true);
+				document.querySelector('#Left').setAttribute('disabled', true);
+				document.querySelector('#Right').setAttribute('disabled', true);
+				attack.style.display = 'block';
+			}
+			else if (grid[row][col] == 2)
+			{
+				treasure++;
+				grid[row][col] = 5;
+				treasureCount.innerHTML = "Treasure Collected: " + treasure;
+			}
 		});
 		
 		var right = document.getElementById("Right");
@@ -222,6 +257,21 @@
 			myDiv = document.getElementById(row + ":" + col);
 			myDiv.className = "playcell";
 			myDiv.textContent = 'X';
+			if (grid[row][col] == 1)
+			{
+				grid[row][col] = 5;
+				document.querySelector('#Up').setAttribute('disabled', true);
+				document.querySelector('#Down').setAttribute('disabled', true);
+				document.querySelector('#Left').setAttribute('disabled', true);
+				document.querySelector('#Right').setAttribute('disabled', true);
+				attack.style.display = 'block';
+			}
+			else if (grid[row][col] == 2)
+			{
+				treasure++;
+				grid[row][col] = 5;
+				treasureCount.innerHTML = "Treasure Collected: " + treasure;
+			}
 		});
 		
 		var up = document.getElementById("Up");
@@ -238,6 +288,21 @@
 			myDiv = document.getElementById(row + ":" + col);
 			myDiv.className = "playcell";
 			myDiv.textContent = 'X';
+			if (grid[row][col] == 1)
+			{
+				grid[row][col] = 5;
+				document.querySelector('#Up').setAttribute('disabled', true);
+				document.querySelector('#Down').setAttribute('disabled', true);
+				document.querySelector('#Left').setAttribute('disabled', true);
+				document.querySelector('#Right').setAttribute('disabled', true);
+				attack.style.display = 'block';
+			}
+			else if (grid[row][col] == 2)
+			{
+				treasure++;
+				grid[row][col] = 5;
+				treasureCount.innerHTML = "Treasure Collected: " + treasure;
+			}
 		});
 		
 		var down = document.getElementById("Down");
@@ -254,6 +319,21 @@
 			myDiv = document.getElementById(row + ":" + col);
 			myDiv.className = "playcell";
 			myDiv.textContent = 'X';
+			if (grid[row][col] == 1)
+			{
+				grid[row][col] = 5;
+				document.querySelector('#Up').setAttribute('disabled', true);
+				document.querySelector('#Down').setAttribute('disabled', true);
+				document.querySelector('#Left').setAttribute('disabled', true);
+				document.querySelector('#Right').setAttribute('disabled', true);
+				attack.style.display = 'block';
+			}
+			else if (grid[row][col] == 2)
+			{
+				treasure++;
+				grid[row][col] = 5;
+				treasureCount.innerHTML = "Treasure Collected: " + treasure;
+			}
 		});
 	</script>
 </body>
