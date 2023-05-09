@@ -67,7 +67,7 @@
 </head>
 <body>
 	<h1>Grid Dungeon</h1>
-	<div class="board">
+	<div id="board" class="board">
 		<div id="0:0" class="cell"></div>
 		<div id="0:1" class="cell"></div>
 		<div id="0:2" class="cell"></div>
@@ -174,12 +174,18 @@
 	<button id="Right" style="position: absolute;left:685px;bottom:60px;width:80px;height:40px;">Right</button>
 	<button id="Up" style="position: absolute;left:770px;bottom:60px;width:80px;height:40px;">Up</button>
 	<button id="Down" style="position: absolute;left:855px;bottom:60px;width:80px;height:40px;">Down</button>
-	<button id="Attack" style="position: absolute;left:375px;bottom:350px;width:80px;height:40px;">Attack</button>
-	<a href="#" class="button" onclick="window.location.href = 'index.html';">Back to Menu</a>
+	<button id="Attack" style="position: absolute;left:375px;bottom:350px;width:80px;height:40px; display: none;">Attack</button>
+	<a href="#" id="menu" class="button" onclick="window.location.href = 'index.html';" style="position: absolute;left:1400px;">Back to Menu</a>
+	<button id="6X6" onclick="window.location.href = 'smallBoard.htm';" style="position: absolute;left:630px;bottom:615px;width:80px;height:40px;">6X6</button>
+	<button id="8X8" onclick="window.location.href = 'mediumBoard.htm';" style="position: absolute;left:730px;bottom:615px;width:80px;height:40px;">8X8</button>
+	<button id="10X10" onclick="window.location.href = 'largeBoard.htm';" style="position: absolute;left:830px;bottom:615px;width:80px;height:40px;" disabled>10X10</button>
 	<p id="monstercount" style="position: absolute;left:1300px;bottom:430px;">Monsters Defeated: 0</p>
 	<p id="treasurecount" style="position: absolute;left:1300px;bottom:400px;">Treasure Collected: 0</p>
+	<p id="winscreen" style="font-size: 70px; position: absolute;left:630px;bottom:325px; display: none;">You Win!</p>
 	<script src="boardSetup.js"></script>
 	<script>
+		document.getElementById("winscreen").style.display = 'none';
+		
 		var grid = [];
 		var row = 0;
 		var col = 0;
@@ -241,6 +247,23 @@
 				grid[row][col] = 5;
 				treasureCount.innerHTML = "Treasure Collected: " + treasure;
 			}
+			else if (grid[row][col] == 4)
+			{
+				up.style.display = 'none';
+				down.style.display = 'none';
+				left.style.display = 'none';
+				right.style.display = 'none';
+				attack.style.display = 'none';
+				myDiv = document.getElementById("board");
+				myDiv.style.display = 'none';
+				document.getElementById("winscreen").style.display = 'block';
+				treasureCount.style.left = "690px";
+				treasureCount.style.bottom = "320px";
+				monsterCount.style.left = "690px";
+				monsterCount.style.bottom = "350px";
+				document.getElementById("menu").style.left = "720px";
+				document.getElementById("menu").style.bottom = "290px";
+			}
 		});
 		
 		var right = document.getElementById("Right");
@@ -271,6 +294,23 @@
 				treasure++;
 				grid[row][col] = 5;
 				treasureCount.innerHTML = "Treasure Collected: " + treasure;
+			}
+			else if (grid[row][col] == 4)
+			{
+				up.style.display = 'none';
+				down.style.display = 'none';
+				left.style.display = 'none';
+				right.style.display = 'none';
+				attack.style.display = 'none';
+				myDiv = document.getElementById("board");
+				myDiv.style.display = 'none';
+				document.getElementById("winscreen").style.display = 'block';
+				treasureCount.style.left = "690px";
+				treasureCount.style.bottom = "320px";
+				monsterCount.style.left = "690px";
+				monsterCount.style.bottom = "350px";
+				document.getElementById("menu").style.left = "720px";
+				document.getElementById("menu").style.bottom = "290px";
 			}
 		});
 		
@@ -303,6 +343,23 @@
 				grid[row][col] = 5;
 				treasureCount.innerHTML = "Treasure Collected: " + treasure;
 			}
+			else if (grid[row][col] == 4)
+			{
+				up.style.display = 'none';
+				down.style.display = 'none';
+				left.style.display = 'none';
+				right.style.display = 'none';
+				attack.style.display = 'none';
+				myDiv = document.getElementById("board");
+				myDiv.style.display = 'none';
+				document.getElementById("winscreen").style.display = 'block';
+				treasureCount.style.left = "690px";
+				treasureCount.style.bottom = "320px";
+				monsterCount.style.left = "690px";
+				monsterCount.style.bottom = "350px";
+				document.getElementById("menu").style.left = "720px";
+				document.getElementById("menu").style.bottom = "290px";
+			}
 		});
 		
 		var down = document.getElementById("Down");
@@ -333,6 +390,23 @@
 				treasure++;
 				grid[row][col] = 5;
 				treasureCount.innerHTML = "Treasure Collected: " + treasure;
+			}
+			else if (grid[row][col] == 4)
+			{
+				up.style.display = 'none';
+				down.style.display = 'none';
+				left.style.display = 'none';
+				right.style.display = 'none';
+				attack.style.display = 'none';
+				myDiv = document.getElementById("board");
+				myDiv.style.display = 'none';
+				document.getElementById("winscreen").style.display = 'block';
+				treasureCount.style.left = "690px";
+				treasureCount.style.bottom = "320px";
+				monsterCount.style.left = "690px";
+				monsterCount.style.bottom = "350px";
+				document.getElementById("menu").style.left = "720px";
+				document.getElementById("menu").style.bottom = "290px";
 			}
 		});
 	</script>
